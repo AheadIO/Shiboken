@@ -882,7 +882,7 @@ QString OverloadData::dumpGraph() const
 
         s << "}" << endl;
     } else {
-        QString argId = QString("arg_%1").arg((uintptr_t)this);
+        QString argId = QString("arg_%1").arg(reinterpret_cast<uintptr_t>(this));
         s << argId << ';' << endl;
 
         s << indent << '"' << argId << "\" [shape=\"plaintext\" style=\"filled,bold\" margin=\"0\" fontname=\"freemono\" fillcolor=\"white\" penwidth=1 ";
