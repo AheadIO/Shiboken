@@ -770,13 +770,11 @@ bool isUserType(PyObject* pyObj)
 Py_hash_t hash(PyObject* pyObj)
 {
     assert(Shiboken::Object::checkType(pyObj));
-#if __SIZEOF_POINTER__ == 8
-    uintptr_t value = reinterpret_cast<uintptr_t>(pyObj);
-    Py_hash_t *lValue = reinterpret_cast<Py_hash_t*>(&value);
-    return lValue[0]^lValue[1];
-#else
-    return reinterpret_cast<Py_hash_t>(pyObj);
-#endif
+    unsigned long result = reinterpret_cast<uintptr_t>(pyObj);
+    for(int i=sizeof(unsigned long); i<sizeof(uintptr_t); i+=sizeof(unsigned long)) {
+      result = result ^  static_cast<unsigned long>(reinterpret_cast<uintptr_t>(pyObj) >> i*8);
+    }
+    return result;
 }
 
 static void setSequenceOwnership(PyObject* pyObj, bool owner)

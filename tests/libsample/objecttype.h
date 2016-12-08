@@ -70,15 +70,7 @@ public:
     Str objectName() const;
     void setObjectName(const Str& name);
 
-    inline unsigned long identifier() const {
-#if __SIZEOF_POINTER__ == 8
-        uintptr_t value = reinterpret_cast<uintptr_t>(this);
-        unsigned long *lValue = reinterpret_cast<unsigned long*>(&value);
-        return reinterpret_cast<unsigned long>(lValue[0]^lValue[1]);
-#else
-        return reinterpret_cast<unsigned long>(this);
-#endif
-    }
+    inline uintptr_t identifier() const {return reinterpret_cast<uintptr_t>(this);}
 
     bool causeEvent(Event::EventType eventType);
 
