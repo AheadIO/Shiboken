@@ -24,6 +24,7 @@
 #define OBJECTTYPE_H
 
 #include <list>
+#include <stdint.h>
 #include "str.h"
 #include "null.h"
 

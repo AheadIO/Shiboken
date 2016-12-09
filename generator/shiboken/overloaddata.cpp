@@ -28,6 +28,8 @@
 #include "shibokengenerator.h"
 #include <QTemporaryFile>
 
+#include <stdint.h>
+
 static const TypeEntry* getAliasedTypeEntry(const TypeEntry* typeEntry)
 {
     if (typeEntry->isPrimitive()) {
