@@ -47,6 +47,22 @@ public:
     void initPP(pp &proc) {
         foreach(QString path, includePaths)
         proc.push_include_path(path.toStdString());
+
+        rpp::pp_null_output_iterator null_out;
+
+#if defined __x86_64__
+        {
+            const char str[] = "#define __x86_64__\n";
+            proc(str, str+sizeof(str), null_out);
+        }
+#endif
+
+#if defined __ILP32__
+        {
+            const char str[] = "#define __ILP32__\n";
+            proc(str, str+sizeof(str), null_out);
+        }
+#endif
     }
 };
 
