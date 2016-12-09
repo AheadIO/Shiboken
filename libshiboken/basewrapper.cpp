@@ -771,7 +771,7 @@ Py_hash_t hash(PyObject* pyObj)
 {
     assert(Shiboken::Object::checkType(pyObj));
     unsigned long result = reinterpret_cast<uintptr_t>(pyObj);
-    for(int i=sizeof(unsigned long); i<sizeof(uintptr_t); i+=sizeof(unsigned long)) {
+    for(unsigned int i=sizeof(unsigned long); i<sizeof(uintptr_t); i+=sizeof(unsigned long)) {
       result = result ^  static_cast<unsigned long>(reinterpret_cast<uintptr_t>(pyObj) >> i*8);
     }
     return result;
