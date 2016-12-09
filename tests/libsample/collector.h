@@ -36,15 +36,15 @@ public:
 
     void clear();
 
-    Collector& operator<<(unsigned long item);
+    Collector& operator<<(uintptr_t item);
 
     Collector& operator<<(const ObjectType *);
 
-    std::list<unsigned long> items();
+    std::list<uintptr_t> items();
     int size();
 
 private:
-    std::list<unsigned long> m_items;
+    std::list<uintptr_t> m_items;
 
     Collector(const Collector&);
     Collector& operator=(const Collector&);

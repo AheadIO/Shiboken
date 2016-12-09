@@ -28,6 +28,8 @@
 #include "shibokengenerator.h"
 #include <QTemporaryFile>
 
+#include <stdint.h>
+
 static const TypeEntry* getAliasedTypeEntry(const TypeEntry* typeEntry)
 {
     if (typeEntry->isPrimitive()) {
@@ -882,7 +884,7 @@ QString OverloadData::dumpGraph() const
 
         s << "}" << endl;
     } else {
-        QString argId = QString("arg_%1").arg((ulong)this);
+        QString argId = QString("arg_%1").arg(reinterpret_cast<uintptr_t>(this));
         s << argId << ';' << endl;
 
         s << indent << '"' << argId << "\" [shape=\"plaintext\" style=\"filled,bold\" margin=\"0\" fontname=\"freemono\" fillcolor=\"white\" penwidth=1 ";

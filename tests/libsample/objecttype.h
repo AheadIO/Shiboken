@@ -24,6 +24,7 @@
 #define OBJECTTYPE_H
 
 #include <list>
+#include <stdint.h>
 #include "str.h"
 #include "null.h"
 
@@ -70,7 +71,7 @@ public:
     Str objectName() const;
     void setObjectName(const Str& name);
 
-    inline unsigned long identifier() const { return reinterpret_cast<unsigned long>(this); }
+    inline uintptr_t identifier() const {return reinterpret_cast<uintptr_t>(this);}
 
     bool causeEvent(Event::EventType eventType);
 

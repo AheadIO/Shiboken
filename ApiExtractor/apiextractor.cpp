@@ -262,6 +262,20 @@ static bool preprocess(const QString& sourceFile,
 
     rpp::pp_null_output_iterator null_out;
 
+#if defined __x86_64__
+    {
+        const char str[] = "#define __x86_64__\n";
+        preprocess(str, str+sizeof(str), null_out);
+    }
+#endif
+
+#if defined __ILP32__
+    {
+        const char str[] = "#define __ILP32__\n";
+        preprocess(str, str+sizeof(str), null_out);
+    }
+#endif
+
     const char *ppconfig = ":/trolltech/generator/pp-qt-configuration";
 
     QFile file(ppconfig);
